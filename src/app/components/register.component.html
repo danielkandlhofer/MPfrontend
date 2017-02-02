@@ -1,21 +1,3 @@
-<!--<div>
-  <form *ngIf="!registered" (ngSubmit)="onSubmit()" #registerForm = "ngForm">
-    <h2>Register User</h2>
-    <div>
-      <label>* Name</label>
-      <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName" ngControl="firstName" required>
-      <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName" ngControl="lastName" required>
-    </div>
-    <div>
-      <label>* Username/Password</label>
-      <input type="text" name="userName" placeholder="User Name" [(ngModel)]="newUser.userName" ngControl="userName" required>
-      <input type="password" name="password1" placeholder="Password" [(ngModel)]="newUser.password" ngControl="password1" required>
-      <input type="password" name="password2" placeholder="Repeat Password" ngControl="password2" required>
-    </div>
-    <button type="submit" [disabled]="!registerForm.form.valid">Register</button>
-  </form>
-</div>
--->
 <div class="container">
   <form class="ui form" *ngIf="!registered" (ngSubmit)="onSubmit()" #registerForm = "ngForm" novalidate>
     <h4 class="ui dividing header">Register User</h4>
@@ -52,9 +34,7 @@
           <input [(ngModel)]="newUser.password"
                  type="password"
                  name="password"
-                 pwd="1234, 0000, 2580, hallo"
                  placeholder="Password"
-                 ngControl="password1"
                  required
                  minlength="4">
         </div>
@@ -62,16 +42,10 @@
         <div *ngIf="registerForm?.controls?.password?.hasError('required')">
           Pflichtfeld
         </div>
-        <div class="ui error message"*ngIf="registerForm?.controls?.password?.hasError('minlength')">
-          <p>Bitte mindestens 4 Zeichen eingeben!</p>
+        <div *ngIf="registerForm?.controls?.password?.hasError('minlength')">
+          Bitte mindestens 4 Zeichen eingeben!
         </div>
-        <div class="ui error message" *ngIf="registerForm?.controls?.password?.hasError('pwd')">
-          <p>Dieses Passwort wird aus Sicherheitsgründen nicht erlaubt!</p>
-        </div>
-        <div >
-          <div class="header">Action Forbidden</div>
-          <p>You can only sign up for an account once with a given e-mail address.</p>
-        </div>
+
       </div>
     </div>
     <button class="ui secondary button" type="submit" [disabled]="!registerForm.form.valid">Register</button>
